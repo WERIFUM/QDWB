@@ -3,11 +3,11 @@ Library of Functions for Estimating Reference Crop Evapotransporation (ETo)
 copyright: (c) 2022 by Pooya shirazi.
 """
 
-from evapotranspiration.convert import radiation2evaporation
+from convert import radiation2evaporation
 import math
 
-from evapotranspiration.check import (
-    check_Julian_day,
+from check import (
+    check_julian_day,
     check_latitude_radians,
     check_solar_declination_radians,
     check_sunset_hour_angle_radians
@@ -36,7 +36,7 @@ def solar_declination(day_of_year):
     solar_dec : float
         Solar Declination [radians]
     """
-    check_Julian_day(day_of_year)
+    check_julian_day(day_of_year)
 
     return 0.409 * math.sin(((2.0 * math.pi / 365.0) * day_of_year - 1.39))
 
@@ -59,7 +59,7 @@ def inverse_relative_distance_earth_sun(day_of_year):
     irdes : float
         Inverse Relative Distance Between Earth and Sun [radians]
     """
-    check_Julian_day(day_of_year)
+    check_julian_day(day_of_year)
 
     return 1 + (0.033 * math.cos((2.0 * math.pi / 365.0) * day_of_year))
 
@@ -136,7 +136,7 @@ def extraterrestrial_radiation(latitude, solar_dec, sha, irdes):
 
 
 
-def hargreaves_samani(tmin, tmax, tmean=None, ra):
+def hargreaves_samani(tmin, tmax, tmean, ra):
     """
     Description
     -----------

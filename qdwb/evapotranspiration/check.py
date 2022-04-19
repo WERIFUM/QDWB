@@ -5,7 +5,7 @@ copyright: (c) 2022 by Pooya shirazi.
 
 
 from typing import Dict, Optional, Tuple, Union, List
-from evapotranspiration.convert import degrees2radians
+from convert import degrees2radians
 
 
 # Internal Constants:
@@ -24,7 +24,7 @@ _MAXSHA_RADIANS = degrees2radians(180)
 
 
 
-def check_Julian_day(doy):
+def check_julian_day(doy):
     """
     Description
     -----------
@@ -64,6 +64,7 @@ def check_solar_declination_radians(sd):
     """
     Description
     -----------
+    Check Solar Declination Is Valid.
     Solar Declination Can Vary Between -23.5 and +23.5 Degrees.
     **Reference**: http://mypages.iit.edu/~maslanka/SolarGeo.pdf
 
@@ -83,6 +84,7 @@ def check_sunset_hour_angle_radians(sha):
     """
     Description
     -----------
+    Check Sunset Hour Angle Is Valid.
     Sunset Hour Angle Has the Range 0 to 180 Degrees.
     **Reference**: http://mypages.iit.edu/~maslanka/SolarGeo.pdf
 
