@@ -4,11 +4,14 @@ copyright: (c) 2022 by Pooya shirazi.
 """
 
 
-from typing import Dict, Optional, Tuple, Union, List
+from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
 import math
 
 
-def celsius2kelvin(celsius):
+def celsius2kelvin(
+    celsius : float
+) -> float:
+    
     """
     Description
     -----------
@@ -24,11 +27,15 @@ def celsius2kelvin(celsius):
     kelvin : float
         Temperature in Degrees Kelvin
     """
+    
     return celsius + 273.15
 
 
 
-def kelvin2celsius(kelvin):
+def kelvin2celsius(
+    kelvin : float
+) -> float:
+    
     """
     Description
     -----------
@@ -44,11 +51,15 @@ def kelvin2celsius(kelvin):
     celsius : float
         Temperature in Degrees Celsius
     """
+    
     return kelvin - 273.15
 
 
 
-def degrees2radians(degrees):
+def degrees2radians(
+    degrees : float
+) -> float:
+    
     """
     Description
     -----------
@@ -64,11 +75,15 @@ def degrees2radians(degrees):
     radians : float
         Value in Radians
     """
+    
     return degrees * (math.pi / 180.0)
 
 
 
-def radians2degrees(radians):
+def radians2degrees(
+    radians : float
+) -> float:
+    
     """
     Description
     -----------
@@ -84,11 +99,15 @@ def radians2degrees(radians):
     degrees : float
         Value in Degrees
     """
+    
     return radians * (180.0 / math.pi)
 
 
 
-def radiation2evaporation(radiation):
+def radiation2evaporation(
+    radiation : float
+) -> float:
+    
     """
     Description
     -----------
@@ -105,4 +124,5 @@ def radiation2evaporation(radiation):
     equivalent evaporation : float
         Equivalent Evaporation in mm/day
     """
+    
     return radiation * 0.408

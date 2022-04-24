@@ -3,6 +3,7 @@ Library of Functions for Estimating Reference Crop Evapotransporation (ETo)
 copyright: (c) 2022 by Pooya shirazi.
 """
 
+from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
 from convert import radiation2evaporation
 import math
 
@@ -14,12 +15,16 @@ from check import (
 )
 
 
+
 # Solar Constant [ MJ m-2 min-1]
 SOLAR_CONSTANT = 0.0820
 
 
 
-def solar_declination(day_of_year):
+def solar_declination(
+    day_of_year : int
+) -> float:
+    
     """
     Description
     -----------
@@ -36,13 +41,17 @@ def solar_declination(day_of_year):
     solar_dec : float
         Solar Declination [radians]
     """
+    
     check_julian_day(day_of_year)
-
+    
     return 0.409 * math.sin(((2.0 * math.pi / 365.0) * day_of_year - 1.39))
 
 
 
-def inverse_relative_distance_earth_sun(day_of_year):
+def inverse_relative_distance_earth_sun(
+    day_of_year : int
+) -> float:
+    
     """
     Description
     -----------
@@ -59,13 +68,18 @@ def inverse_relative_distance_earth_sun(day_of_year):
     irdes : float
         Inverse Relative Distance Between Earth and Sun [radians]
     """
+    
     check_julian_day(day_of_year)
 
     return 1 + (0.033 * math.cos((2.0 * math.pi / 365.0) * day_of_year))
 
 
 
-def sunset_hour_angle(latitude, solar_dec):
+def sunset_hour_angle(
+    latitude : float,
+    solar_dec : float
+) -> float:
+    
     """
     Description
     -----------
@@ -86,17 +100,23 @@ def sunset_hour_angle(latitude, solar_dec):
     sha : float
         Sunset Hour Angle [radians]
     """
-    check_latitude_radians(latitude)
+    
+    check_latitude_radians(latitude)    
     check_solar_declination_radians(solar_dec)
 
     cos_sha = -math.tan(latitude) * math.tan(solar_dec)
-
     # Domain of acos is -1 <= x <= 1 Radians
     return math.acos(min(max(cos_sha, -1.0), 1.0))
 
 
 
-def extraterrestrial_radiation(latitude, solar_dec, sha, irdes):
+def extraterrestrial_radiation(
+    latitude : float,
+    solar_dec : float,
+    sha : float,
+    irdes : float
+) -> float:
+    
     """
     Description
     -----------
@@ -125,6 +145,7 @@ def extraterrestrial_radiation(latitude, solar_dec, sha, irdes):
     Ra : float
         Daily Extraterrestrial Radiation [MJ m-2 day-1]
     """
+    
     check_latitude_radians(latitude)
     check_solar_declination_radians(solar_dec)
     check_sunset_hour_angle_radians(sha)
@@ -136,7 +157,13 @@ def extraterrestrial_radiation(latitude, solar_dec, sha, irdes):
 
 
 
-def hargreaves_samani(tmin, tmax, tmean, ra):
+def hargreaves_samani(
+    tmin : float, 
+    tmax : float, 
+    tmean : float, 
+    ra : float
+) -> float:
+    
     """
     Description
     -----------
@@ -163,5 +190,6 @@ def hargreaves_samani(tmin, tmax, tmean, ra):
     ETo : float
         Reference Crop Evapotranspiration [mm/day]
     """
+    
     return 0.0023 * (tmean + 17.8) * (tmax - tmin) ** 0.5 * radiation2evaporation(ra)
 
