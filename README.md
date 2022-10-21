@@ -1,2 +1,2 @@
 # QDWB
-QDWB is a Quasi Distributed Water Balance model to estimate the water balance parameters using a distributed method.
+`QDWB` Is A `Quasi Distributed Water Balance Model` To Estimate The Water Balance Parameters Using A Distributed Method. The Model Is Based On The `Water Balance Equation` And The `Soil Water Balance Equation`. The Model Is Written In `Python` And Is `Open Source`. The Model Is Currently `Under Development` And Is Not Yet Ready For Use. 

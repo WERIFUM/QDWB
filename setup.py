@@ -1,0 +1,55 @@
+from setuptools import find_packages, setup
+
+classifiers = [
+    'Development Status :: 1 - Planning',
+    'Intended Audience :: Education',
+    'Operating System :: POSIX :: Linux',
+    'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+    'Programming Language :: Python :: 3'
+]
+
+setup(
+    name='qdwb',
+    version='0.0.1',
+    description='QDWB Is A Quasi Distributed Water Balance Model To Estimate The Water Balance Parameters Using A Distributed Method.',
+    long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
+    url='',  
+    author='Pooya Shirazi',
+    author_email='shirazipooya@outlook.com',
+    license='GPLv3', 
+    classifiers=classifiers,
+    keywords='QDWB', 
+    packages=find_packages(),
+    install_requires=[
+        'numpy',
+        'pandas',
+        'scipy',
+        'openpyxl',
+        'xlrd',
+        'xlsxwriter',
+        'plotly',
+        'dash',
+        'dash-bootstrap-components',
+        'dash-extensions',
+        'dash-mantine-components',
+        'dash-datatables',
+        'geopandas',
+        'shapely',
+        'rtree',
+        'pyproj',
+        'Flask',
+        'Flask-SQLAlchemy',
+        'Flask-Migrate',
+        'WTForms',
+        'Flask-WTF',
+        'flask-bcrypt',
+        'flask-login',
+        'email_validator',
+        'psycopg2',
+        'psycopg2-binary',
+        'SQLAlchemy',
+        'GeoAlchemy2',
+        'persiantools',
+        'pytest',
+    ]
+)
