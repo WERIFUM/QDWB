@@ -1,6 +1,7 @@
 
 from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
 from .check import *
+from .global_variables import *
 
 class ReferenceEvapotranspiration():
     
@@ -24,16 +25,16 @@ class ReferenceEvapotranspiration():
         Parameters
         ----------
         tmin : float
-            Minimum Daily Temperature [Degrees Celsius]
+            Minimum Daily Temperature [°C]
         
         tmax : float
-            Maximum Daily Temperature [Degrees Celsius]
+            Maximum Daily Temperature [°C]
         
         tmean : float
-            Mean Daily Temperature [Degrees Celsius]
+            Mean Daily Temperature [°C]
         
         ra : float
-            Extraterrestrial Radiation [mm/day]
+            Extraterrestrial Radiation [mm day-1]
             
         Returns
         -------
@@ -65,7 +66,7 @@ class ReferenceEvapotranspiration():
         check_between(
             a=ra,
             min=0,
-            max=0.0820 * 24 * 60 * 0.408,
+            max=SOLAR_CONSTANT * 24 * 60 * 0.408,
             name="Extraterrestrial Radiation"
         )
         
@@ -92,34 +93,35 @@ class ReferenceEvapotranspiration():
         
         Parameters
         ----------
-        delta : float
-            Slope of Saturation Vapour Pressure Curve [kPa/Degrees Celsius].
         
         rn : float
             Net Radiation at Crop Surface [MJ m-2 day-1].
         
         G : float
-            Soil Heat Flux (G) [MJ m-2 day-1]
+            Soil Heat Flux Density (G) [MJ m-2 day-1]
             
-        gamma : float
-            Psychrometric Constant [kPa/Degrees Celsius].
-        
         tmean : float
-            Mean Daily Temperature [Degrees Celsius]
+            Mean Daily Air Temperature At 2m Height [°C]
         
         u2 : float
-            Wind Speed at 2m Height [m/s].
-        
+            Wind Speed at 2m Height [m s-1].
+            
         es : float
             Saturation Vapour Pressure [kPa].
         
         ea : float
             Actual Vapour Pressure [kPa]
+        
+        delta : float
+            Slope Vapour Pressure Curve [kPa °C-1].
+            
+        gamma : float
+            Psychrometric Constant [kPa °C-1].
             
         Returns
         -------
         ETo : float
-            Reference Crop Evapotranspiration [mm/day]
+            Reference Evapotranspiration [mm day-1]
         """
         
         A = 0.408 * delta * (rn - G)
